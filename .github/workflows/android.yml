@@ -21,6 +21,8 @@ jobs: # groups the jobs to be executed in this workflow
         with:
           java-version: '11'
 
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
       # Allow permissions to make gradle executable - This can removed by adding the gradlew file permission
       # directly into the repository using `git update-index --chmod=+x gradlew`
       # - name: Make gradle executable
@@ -37,9 +39,6 @@ jobs: # groups the jobs to be executed in this workflow
 
       - name: Checkout code
         uses: actions/checkout@v2
-
-      - name: Make gradlew executable
-        run: chmod +x ./gradlew
 
       - name: Lint check
         run: ./gradlew lint # Execute gradle script to perform lint check
