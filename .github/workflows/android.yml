@@ -34,7 +34,7 @@ jobs: # groups the jobs to be executed in this workflow
 
   lint-check: # defines another job called lint
     name: 🔍 Lint
-    needs: [ lint-check ]
+    needs: [ build ]
     runs-on: ubuntu-latest
     steps:
 
@@ -52,7 +52,7 @@ jobs: # groups the jobs to be executed in this workflow
 
   unit-tests: #Defines another job called unit tests
     name: 🧪 Unit Tests
-    needs: [ build ] # This job's execution is dependant on whether `lint-check` job completes successfully
+    needs: [ lint-check ] # This job's execution is dependant on whether `lint-check` job completes successfully
     runs-on: ubuntu-latest
     steps:
 
