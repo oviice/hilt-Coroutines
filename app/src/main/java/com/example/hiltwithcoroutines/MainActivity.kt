@@ -39,8 +39,15 @@ class MainActivity : AppCompatActivity() {
             try {
                 // Make the API call using Retrofit and suspend function
                 val response = apiService.fetchData()
+
                 // Update UI on the Main dispatcher
-                textView.text = "Data: ${response[0].archiveUrl}"
+                textView.text=""
+                for (i in response.indices) {
+
+                    textView.append(response[i].login+"\n")
+                    Log.d("dasd", "fetchData: "+response[i].avatarUrl)
+                }
+                //textView.text = "Data: ${response.size}"
             } catch (e: Exception) {
                 // Handle API call error
                 textView.text = "Error: ${e.message}"
