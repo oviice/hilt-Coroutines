@@ -32,12 +32,14 @@ jobs: # groups the jobs to be executed in this workflow
 
   lint-check: # defines another job called lint
     name: 🔍 Lint
-    needs: [build]
     runs-on: ubuntu-latest
     steps:
 
       - name: Checkout code
         uses: actions/checkout@v2
+
+      - name: Make gradle executable
+        run: chmod +x ./gradlew
 
       - name: Lint check
         run: ./gradlew lint # Execute gradle script to perform lint check
