@@ -99,7 +99,7 @@ jobs: # groups the jobs to be executed in this workflow
 
       # Gradle v8.0.0 requires java JDK v17
       - name: Set up Java JDK 17
-        uses: actions/setup-java@v2
+        uses: actions/setup-java@v3
         with:
           java-version: '17'
           distribution: adopt
