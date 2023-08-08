@@ -90,7 +90,7 @@ jobs: # groups the jobs to be executed in this workflow
     runs-on: macos-latest # MacOS runs faster
     strategy:
       matrix:
-        api-level: [ 21, 23, 29 ]
+        api-level: [ 24, 26, 29 ]
         target: [ default, google_apis ]
 
     steps:
