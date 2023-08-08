@@ -13,11 +13,11 @@ jobs: # groups the jobs to be executed in this workflow
 
       # Checks out code from the VCS to the runner
       - name: Checkout code # [optional] specifies the name of the step
-        uses: actions/checkout@v2 # specifies which action and version to execute ie. checkout@v2
+        uses: actions/checkout@v3 # specifies which action and version to execute ie. checkout@v2
 
       # Setup JDK Version 11 in the runner
       - name: Set up JDK 17
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@v2
         with:
           java-version: '17'
 
@@ -36,11 +36,11 @@ jobs: # groups the jobs to be executed in this workflow
     steps:
 
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       # Setup JDK Version 11 in the runner
       - name: Set up JDK 17
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@v2
         with:
           java-version: '17'
 
@@ -51,7 +51,7 @@ jobs: # groups the jobs to be executed in this workflow
         run: ./gradlew lint # Execute gradle script to perform lint check
 
       - name: Generate lint report
-        uses: actions/upload-artifact@v2 # Uses upload-artifact@v2 action to upload lint report artifact
+        uses: actions/upload-artifact@v3 # Uses upload-artifact@v2 action to upload lint report artifact
         with: # Define extra parameters
           name: lint_report.html # Name of the artifact to be uploaded
           path: app/build/reports/lint-results-debug.html # Specifies the path where the artifact to be uploaded is located
@@ -63,10 +63,10 @@ jobs: # groups the jobs to be executed in this workflow
     steps:
 
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       # Setup JDK Version 11 in the runner
       - name: Set up JDK 17
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@v2
         with:
           java-version: '17'
 
@@ -77,7 +77,7 @@ jobs: # groups the jobs to be executed in this workflow
         run: ./gradlew test --stacktrace # Execute gradle script to execute unit tests
 
       - name: Generate test report
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: unit_tests_report.html
           path: app/build/reports/tests/testDebugUnitTest/
@@ -87,11 +87,11 @@ jobs: # groups the jobs to be executed in this workflow
     runs-on: macos-latest # MacOS runs faster
     steps:
       - name: Checkout the code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       # Gradle v8.0.0 requires java JDK v17
       - name: Set up Java JDK 17
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@v2
         with:
           java-version: '17'
 
@@ -99,13 +99,13 @@ jobs: # groups the jobs to be executed in this workflow
         run: chmod +x ./gradlew
 
       - name: Run espresso tests
-        uses: reactivecircus/android-emulator-runner@v2 # 3rd party tool
+        uses: reactivecircus/android-emulator-runner@v3 # 3rd party tool
         with:
           api-level: 29
           script: ./gradlew connectedCheck
 
       - name: Upload Instrumentation Test report
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: instrumentation_test_report
           path: app/build/reports/androidTests/connected
@@ -118,10 +118,10 @@ jobs: # groups the jobs to be executed in this workflow
     steps:
 
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up JDK 17
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@v2
         with:
           java-version: '17'
 
@@ -132,7 +132,7 @@ jobs: # groups the jobs to be executed in this workflow
         run: ./gradlew assembleDebug --stacktrace
 
       - name: Upload debug apk
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v3
         with:
           name: Android-CI-CD
           path: app/build/outputs/apk/debug/app-debug.apk
